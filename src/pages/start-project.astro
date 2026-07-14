@@ -1,0 +1,189 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Start Your Project | Emerald Layer Company',
+};
+---
+
+<Layout metadata={metadata}>
+
+<section class="py-20">
+
+  <div class="max-w-4xl mx-auto px-6">
+
+    <div class="text-center mb-16">
+
+      <h1 class="text-5xl font-bold mb-6">
+        Start Your Project
+      </h1>
+
+      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+        Whether you already have an STL file ready to print or just have an idea,
+        we'd love to help bring it to life.
+      </p>
+
+    </div>
+
+    <form class="space-y-10">
+
+      <div>
+
+        <h2 class="text-2xl font-bold mb-6">
+          Your Information
+        </h2>
+
+        <div class="grid md:grid-cols-2 gap-6">
+
+          <input
+            type="text"
+            placeholder="Full Name"
+            class="border rounded-xl p-4 w-full"
+          />
+
+          <input
+            type="email"
+            placeholder="Email Address"
+            class="border rounded-xl p-4 w-full"
+          />
+
+          <input
+            type="tel"
+            placeholder="Phone Number"
+            class="border rounded-xl p-4 w-full"
+          />
+
+          <input
+            type="text"
+            placeholder="Business Name (optional)"
+            class="border rounded-xl p-4 w-full"
+          />
+
+        </div>
+
+      </div>
+
+      <div>
+
+        <h2 class="text-2xl font-bold mb-6">
+          Tell Us About Your Project
+        </h2>
+
+        <textarea
+          rows="7"
+          placeholder="Describe what you'd like us to create..."
+          class="border rounded-xl p-4 w-full"
+        ></textarea>
+
+      </div>
+
+      <div>
+
+        <h2 class="text-2xl font-bold mb-6">
+          Project Type
+        </h2>
+
+        <div class="grid md:grid-cols-2 gap-3">
+
+          <label><input type="checkbox"> Planter</label>
+          <label><input type="checkbox"> Koozie</label>
+          <label><input type="checkbox"> Sign</label>
+          <label><input type="checkbox"> Automotive</label>
+          <label><input type="checkbox"> Home Décor</label>
+          <label><input type="checkbox"> Prototype</label>
+          <label><input type="checkbox"> Replacement Part</label>
+          <label><input type="checkbox"> Custom Design</label>
+
+        </div>
+
+      </div>
+
+      <div>
+
+        <h2 class="text-2xl font-bold mb-6">
+          Material Preference
+        </h2>
+
+        <select class="border rounded-xl p-4 w-full">
+
+          <option>I'm Not Sure</option>
+          <option>PLA</option>
+          <option>PETG</option>
+          <option>TPU</option>
+          <option>ASA</option>
+          <option>Carbon Fiber</option>
+
+        </select>
+
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+
+        <div>
+
+          <h2 class="text-2xl font-bold mb-4">
+            Quantity
+          </h2>
+
+          <input
+            type="number"
+            min="1"
+            value="1"
+            class="border rounded-xl p-4 w-full"
+          />
+
+        </div>
+
+        <div>
+
+          <h2 class="text-2xl font-bold mb-4">
+            Needed By
+          </h2>
+
+          <input
+            type="date"
+            class="border rounded-xl p-4 w-full"
+          />
+
+        </div>
+
+      </div>
+
+      <div>
+
+        <h2 class="text-2xl font-bold mb-6">
+          Upload Your Files
+        </h2>
+
+        <div class="border-2 border-dashed rounded-2xl p-10 text-center">
+
+          <p class="text-xl font-semibold">
+            File upload coming next
+          </p>
+
+          <p class="text-gray-500 mt-2">
+            STL • STEP • 3MF • OBJ • ZIP • JPG • PNG • PDF
+          </p>
+
+        </div>
+
+      </div>
+
+      <div class="text-center">
+
+        <button
+          type="submit"
+          class="bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-4 rounded-xl text-lg font-semibold transition"
+        >
+          Start My Project
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</section>
+
+</Layout>
