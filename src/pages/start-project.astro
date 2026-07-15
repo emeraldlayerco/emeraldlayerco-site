@@ -1,6 +1,13 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 
+import ContactInformation from '~/components/start-project/ContactInformation.astro';
+import ProjectDetails from '~/components/start-project/ProjectDetails.astro';
+import PrintDetails from '~/components/start-project/PrintDetails.astro';
+import FileUpload from '~/components/start-project/FileUpload.astro';
+import AdditionalNotes from '~/components/start-project/AdditionalNotes.astro';
+import SuccessPanel from '~/components/start-project/SuccessPanel.astro';
+
 const metadata = {
   title: 'Start Your Project | Emerald Layer Company',
 };
@@ -19,171 +26,104 @@ const metadata = {
       </h1>
 
       <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-        Whether you already have an STL file ready to print or just have an idea,
-        we'd love to help bring it to life.
+        Whether you already have a printable file or just an idea, we'd love to
+        help bring your project to life. The more information you provide, the
+        more accurate your quote will be.
       </p>
 
     </div>
 
-    <form class="space-y-10">
+    <form
+      id="projectForm"
+      class="space-y-12"
+      enctype="multipart/form-data"
+    >
 
-      <div>
+      <ContactInformation />
 
-        <h2 class="text-2xl font-bold mb-6">
-          Your Information
-        </h2>
+      <ProjectDetails />
 
-        <div class="grid md:grid-cols-2 gap-6">
+      <PrintDetails />
 
-          <input
-            type="text"
-            placeholder="Full Name"
-            class="border rounded-xl p-4 w-full"
-          />
+      <FileUpload />
 
-          <input
-            type="email"
-            placeholder="Email Address"
-            class="border rounded-xl p-4 w-full"
-          />
+      <AdditionalNotes />
 
-          <input
-            type="tel"
-            placeholder="Phone Number"
-            class="border rounded-xl p-4 w-full"
-          />
-
-          <input
-            type="text"
-            placeholder="Business Name (optional)"
-            class="border rounded-xl p-4 w-full"
-          />
-
-        </div>
-
-      </div>
-
-      <div>
-
-        <h2 class="text-2xl font-bold mb-6">
-          Tell Us About Your Project
-        </h2>
-
-        <textarea
-          rows="7"
-          placeholder="Describe what you'd like us to create..."
-          class="border rounded-xl p-4 w-full"
-        ></textarea>
-
-      </div>
-
-      <div>
-
-        <h2 class="text-2xl font-bold mb-6">
-          Project Type
-        </h2>
-
-        <div class="grid md:grid-cols-2 gap-3">
-
-          <label><input type="checkbox"> Planter</label>
-          <label><input type="checkbox"> Koozie</label>
-          <label><input type="checkbox"> Sign</label>
-          <label><input type="checkbox"> Automotive</label>
-          <label><input type="checkbox"> Home Décor</label>
-          <label><input type="checkbox"> Prototype</label>
-          <label><input type="checkbox"> Replacement Part</label>
-          <label><input type="checkbox"> Custom Design</label>
-
-        </div>
-
-      </div>
-
-      <div>
-
-        <h2 class="text-2xl font-bold mb-6">
-          Material Preference
-        </h2>
-
-        <select class="border rounded-xl p-4 w-full">
-
-          <option>I'm Not Sure</option>
-          <option>PLA</option>
-          <option>PETG</option>
-          <option>TPU</option>
-          <option>ASA</option>
-          <option>Carbon Fiber</option>
-
-        </select>
-
-      </div>
-
-      <div class="grid md:grid-cols-2 gap-6">
-
-        <div>
-
-          <h2 class="text-2xl font-bold mb-4">
-            Quantity
-          </h2>
-
-          <input
-            type="number"
-            min="1"
-            value="1"
-            class="border rounded-xl p-4 w-full"
-          />
-
-        </div>
-
-        <div>
-
-          <h2 class="text-2xl font-bold mb-4">
-            Needed By
-          </h2>
-
-          <input
-            type="date"
-            class="border rounded-xl p-4 w-full"
-          />
-
-        </div>
-
-      </div>
-
-      <div>
-
-        <h2 class="text-2xl font-bold mb-6">
-          Upload Your Files
-        </h2>
-
-        <div class="border-2 border-dashed rounded-2xl p-10 text-center">
-
-          <p class="text-xl font-semibold">
-            File upload coming next
-          </p>
-
-          <p class="text-gray-500 mt-2">
-            STL • STEP • 3MF • OBJ • ZIP • JPG • PNG • PDF
-          </p>
-
-        </div>
-
-      </div>
-
-      <div class="text-center">
+      <div class="text-center pt-6">
 
         <button
+          id="submitButton"
           type="submit"
-          class="bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-4 rounded-xl text-lg font-semibold transition"
+          class="bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-5 rounded-xl text-lg font-semibold transition disabled:opacity-50"
         >
-          Start My Project
+          Submit Project Request
         </button>
 
       </div>
 
     </form>
 
+    <SuccessPanel />
+
   </div>
 
 </section>
+
+<script>
+const form = document.getElementById('projectForm');
+const button = document.getElementById('submitButton');
+const successPanel = document.getElementById('successPanel');
+
+form?.addEventListener('submit', async (e) => {
+
+  e.preventDefault();
+
+  button.disabled = true;
+  button.textContent = 'Submitting...';
+
+  const formData = new FormData(form);
+
+  try {
+
+    const response = await fetch('/api/start-project', {
+      method: 'POST',
+      body: formData,
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+
+      form.style.display = 'none';
+
+      successPanel.classList.remove('hidden');
+
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+
+    } else {
+
+      alert('Something went wrong. Please try again.');
+
+      button.disabled = false;
+      button.textContent = 'Submit Project Request';
+
+    }
+
+  } catch (error) {
+
+    console.error(error);
+
+    alert('Unable to contact the server.');
+
+    button.disabled = false;
+    button.textContent = 'Submit Project Request';
+
+  }
+
+});
+</script>
 
 </Layout>

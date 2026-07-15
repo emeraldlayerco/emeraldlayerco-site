@@ -1,0 +1,61 @@
+<section>
+
+  <h2 class="text-2xl font-bold mb-6">
+    Print Details
+  </h2>
+
+  <div class="grid md:grid-cols-3 gap-6">
+
+    <div>
+
+      <label class="block font-semibold mb-2">
+        Material Preference
+      </label>
+
+      <select
+        name="material"
+        class="border rounded-xl p-4 w-full"
+      >
+        <option>I'm Not Sure</option>
+        <option>PLA</option>
+        <option>PETG</option>
+        <option>TPU</option>
+        <option>ASA</option>
+        <option>Carbon Fiber</option>
+      </select>
+
+    </div>
+
+    <div>
+
+      <label class="block font-semibold mb-2">
+        Quantity
+      </label>
+
+      <input
+        name="quantity"
+        type="number"
+        min="1"
+        value="1"
+        class="border rounded-xl p-4 w-full"
+      />
+
+    </div>
+
+    <div>
+
+      <label class="block font-semibold mb-2">
+        Needed By
+      </label>
+
+      <input
+        name="neededBy"
+        type="date"
+        class="border rounded-xl p-4 w-full"
+      />
+
+    </div>
+
+  </div>
+
+</section>

@@ -1,0 +1,94 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+import planterWhite from '~/assets/images/gallery/planter-white.png';
+import planterPinkBlue from '~/assets/images/gallery/planter-pink-blue.png';
+import fourKoozies from '~/assets/images/gallery/four-koozies.png';
+import vwBus from '~/assets/images/gallery/vw-bus.png';
+
+const metadata = {
+  title: 'Past Projects | Emerald Layer Company',
+};
+---
+
+<Layout metadata={metadata}>
+
+<section class="py-20">
+
+  <div class="max-w-7xl mx-auto px-6">
+
+    <div class="text-center mb-16">
+
+      <p class="uppercase tracking-[0.25em] text-emerald-600 font-semibold mb-3">
+        PORTFOLIO
+      </p>
+
+      <h1 class="text-5xl font-bold mb-6">
+        Past Projects
+      </h1>
+
+      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+        Here's a collection of some of our favorite projects.
+        Every piece is designed or professionally printed right here in
+        Humboldt County, California.
+      </p>
+
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+      <img
+        src={planterWhite.src}
+        alt="White Planter"
+        class="w-full h-96 object-cover rounded-3xl shadow-xl"
+      />
+
+      <img
+        src={planterPinkBlue.src}
+        alt="Pink and Blue Planter"
+        class="w-full h-96 object-cover rounded-3xl shadow-xl"
+      />
+
+      <img
+        src={fourKoozies.src}
+        alt="Four Koozies"
+        class="w-full h-96 object-cover rounded-3xl shadow-xl"
+      />
+
+      <img
+        src={vwBus.src}
+        alt="VW Bus"
+        class="w-full h-96 object-cover rounded-3xl shadow-xl"
+      />
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="py-20 bg-gray-50 dark:bg-slate-900">
+
+  <div class="max-w-4xl mx-auto text-center px-6">
+
+    <h2 class="text-4xl font-bold mb-6">
+      Ready to Start Your Own Project?
+    </h2>
+
+    <p class="text-lg text-gray-600 dark:text-gray-300 mb-10">
+      Whether you already have a printable file or just an idea,
+      we'd love to help bring your project to life.
+    </p>
+
+    <a
+      href="/start-project"
+      class="inline-block bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-5 rounded-xl text-lg font-semibold transition"
+    >
+      🚀 Start Your Project
+    </a>
+
+  </div>
+
+</section>
+
+</Layout>

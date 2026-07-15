@@ -2,7 +2,8 @@
 import Layout from '~/layouts/PageLayout.astro';
 
 import EmeraldHero from '~/components/widgets/EmeraldHero.astro';
-import FeaturedProducts from '~/components/widgets/FeaturedProducts.astro';
+import StartProjectCTA from '~/components/widgets/StartProjectCTA.astro';
+import GalleryPreview from '~/components/widgets/GalleryPreview.astro';
 
 const metadata = {
   title: 'Emerald Layer Company',
@@ -14,78 +15,8 @@ const metadata = {
 
   <EmeraldHero />
 
-  <section class="py-20 bg-white dark:bg-slate-900">
-    <div class="max-w-7xl mx-auto px-6">
+  <StartProjectCTA />
 
-      <div class="text-center mb-12">
-        <h2 class="text-4xl font-bold mb-4">
-          Featured Collections
-        </h2>
-
-        <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-          Browse our most popular categories of custom designed and professionally
-          printed products.
-        </p>
-      </div>
-
-      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-
-        <div class="rounded-2xl border p-8 hover:shadow-xl transition duration-300">
-          <div class="text-5xl mb-4">🪴</div>
-          <h3 class="text-2xl font-bold mb-2">Planters</h3>
-          <p>
-            Original Emerald Layer Company planter designs created to add style
-            to any home or office.
-          </p>
-        </div>
-
-        <div class="rounded-2xl border p-8 hover:shadow-xl transition duration-300">
-          <div class="text-5xl mb-4">🥤</div>
-          <h3 class="text-2xl font-bold mb-2">Koozies</h3>
-          <p>
-            Our best-selling insulated drink holders available in a variety
-            of unique designs.
-          </p>
-        </div>
-
-        <div class="rounded-2xl border p-8 hover:shadow-xl transition duration-300">
-          <div class="text-5xl mb-4">🪧</div>
-          <h3 class="text-2xl font-bold mb-2">Signs</h3>
-          <p>
-            Personalized signs for homes, businesses, events, gifts, and more.
-          </p>
-        </div>
-
-        <div class="rounded-2xl border p-8 hover:shadow-xl transition duration-300">
-          <div class="text-5xl mb-4">🚗</div>
-          <h3 class="text-2xl font-bold mb-2">Automotive</h3>
-          <p>
-            Functional automotive accessories and custom interior upgrades.
-          </p>
-        </div>
-
-        <div class="rounded-2xl border p-8 hover:shadow-xl transition duration-300">
-          <div class="text-5xl mb-4">🏠</div>
-          <h3 class="text-2xl font-bold mb-2">Home Décor</h3>
-          <p>
-            Decorative and functional pieces designed to make your home unique.
-          </p>
-        </div>
-
-        <div class="rounded-2xl border p-8 hover:shadow-xl transition duration-300">
-          <div class="text-5xl mb-4">✨</div>
-          <h3 class="text-2xl font-bold mb-2">Custom Projects</h3>
-          <p>
-            Have an idea? We'll work with you to design and create a custom
-            3D printed solution.
-          </p>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <FeaturedProducts />
+  <GalleryPreview />
 
 </Layout>

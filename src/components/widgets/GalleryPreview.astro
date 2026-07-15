@@ -1,0 +1,78 @@
+---
+import planterWhite from '~/assets/images/gallery/planter-white.png';
+import planterPinkBlue from '~/assets/images/gallery/planter-pink-blue.png';
+import fourKoozies from '~/assets/images/gallery/four-koozies.png';
+import vwBus from '~/assets/images/gallery/vw-bus.png';
+---
+
+<section class="py-24 bg-gray-50 dark:bg-slate-900">
+
+  <div class="max-w-7xl mx-auto px-6">
+
+    <div class="text-center mb-14">
+
+      <p class="uppercase tracking-[0.25em] text-emerald-600 font-semibold mb-3">
+        RECENT WORK
+      </p>
+
+      <h2 class="text-4xl md:text-5xl font-bold mb-5">
+        See What We've Been Creating
+      </h2>
+
+      <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+        Here's a preview of some of our favorite projects. Browse our full
+        portfolio to see what's possible with custom 3D printing.
+      </p>
+
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+      <a href="/gallery" class="group">
+        <img
+          src={planterWhite.src}
+          alt="White Planter"
+          class="w-full h-80 object-cover rounded-3xl shadow-xl transition duration-300 group-hover:scale-[1.02]"
+        />
+      </a>
+
+      <a href="/gallery" class="group">
+        <img
+          src={planterPinkBlue.src}
+          alt="Pink and Blue Planter"
+          class="w-full h-80 object-cover rounded-3xl shadow-xl transition duration-300 group-hover:scale-[1.02]"
+        />
+      </a>
+
+      <a href="/gallery" class="group">
+        <img
+          src={fourKoozies.src}
+          alt="Four Koozies"
+          class="w-full h-80 object-cover rounded-3xl shadow-xl transition duration-300 group-hover:scale-[1.02]"
+        />
+      </a>
+
+      <a href="/gallery" class="group">
+        <img
+          src={vwBus.src}
+          alt="VW Bus"
+          class="w-full h-80 object-cover rounded-3xl shadow-xl transition duration-300 group-hover:scale-[1.02]"
+        />
+      </a>
+
+    </div>
+
+    <div class="text-center mt-12">
+
+      <a
+        href="/gallery"
+        class="inline-block bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-xl font-semibold transition"
+      >
+        View All Past Projects →
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
