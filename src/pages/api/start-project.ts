@@ -5,6 +5,7 @@ import { env } from "cloudflare:workers";
 
 import { generateProjectId } from "~/lib/projectId";
 import { sendProjectRequestEmail } from "~/lib/email";
+import { uploadProjectFiles } from "~/lib/r2";
 
 export const POST: APIRoute = async ({ request }) => {
   try {
@@ -26,6 +27,17 @@ export const POST: APIRoute = async ({ request }) => {
 
     const notes = String(formData.get("notes") ?? "");
 
+    // Get uploaded files
+    const uploadedFiles = formData
+      .getAll("files")
+      .filter((f): f is File => f instanceof File && f.size > 0);
+
+    // Upload files to R2
+    const uploadedFileNames = await uploadProjectFiles(
+      projectId,
+      uploadedFiles
+    );
+
     await sendProjectRequestEmail(env.RESEND_API_KEY, {
       projectId,
       name,
@@ -38,6 +50,9 @@ export const POST: APIRoute = async ({ request }) => {
       quantity,
       neededBy,
       notes,
+
+      // We'll use this in the next step
+      uploadedFiles: uploadedFileNames,
     });
 
     return new Response(

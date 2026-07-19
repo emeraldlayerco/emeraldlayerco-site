@@ -16,6 +16,8 @@ interface ProjectRequest {
   neededBy: string;
 
   notes: string;
+
+  uploadedFiles: string[];
 }
 
 const COMPANY_EMAIL = "justin@emeraldlayer.com";
@@ -25,6 +27,27 @@ export async function sendProjectRequestEmail(
   data: ProjectRequest
 ) {
   const resend = new Resend(apiKey);
+
+  const uploadedFilesHtml =
+    data.uploadedFiles.length > 0
+      ? `
+      <hr>
+
+      <h2>Uploaded Files</h2>
+
+      <ul>
+        ${data.uploadedFiles
+          .map((file) => `<li>${file}</li>`)
+          .join("")}
+      </ul>
+      `
+      : `
+      <hr>
+
+      <h2>Uploaded Files</h2>
+
+      <p>No files uploaded.</p>
+      `;
 
   const html = `
   <div style="font-family:Arial,sans-serif;max-width:700px;margin:auto;line-height:1.6;">
@@ -62,6 +85,8 @@ export async function sendProjectRequestEmail(
     <h2>Additional Notes</h2>
 
     <p>${data.notes ? data.notes.replace(/\n/g, "<br>") : "-"}</p>
+
+    ${uploadedFilesHtml}
 
   </div>
   `;
