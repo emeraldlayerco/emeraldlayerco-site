@@ -5,9 +5,8 @@ import type { APIRoute } from "astro";
 import { generateProjectId } from "~/lib/projectId";
 import { sendProjectRequestEmail } from "~/lib/email";
 
-export const POST: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async ({ request, locals }) => {
   try {
-
     const formData = await request.formData();
 
     const projectId = generateProjectId();
@@ -26,23 +25,33 @@ export const POST: APIRoute = async ({ request }) => {
 
     const notes = String(formData.get("notes") ?? "");
 
-    await sendProjectRequestEmail({
-      projectId,
+    // Cloudflare Worker runtime environment
+    const runtime = (locals as any).runtime;
 
-      name,
-      email,
-      phone,
-      business,
+    if (!runtime?.env?.RESEND_API_KEY) {
+      throw new Error("RESEND_API_KEY missing from Cloudflare runtime.");
+    }
 
-      projectName,
-      description,
+    await sendProjectRequestEmail(
+      runtime.env.RESEND_API_KEY,
+      {
+        projectId,
 
-      material,
-      quantity,
-      neededBy,
+        name,
+        email,
+        phone,
+        business,
 
-      notes,
-    });
+        projectName,
+        description,
+
+        material,
+        quantity,
+        neededBy,
+
+        notes,
+      }
+    );
 
     return new Response(
       JSON.stringify({
@@ -56,9 +65,7 @@ export const POST: APIRoute = async ({ request }) => {
         },
       }
     );
-
   } catch (error) {
-
     console.error("Project submission failed:", error);
 
     return new Response(
@@ -73,6 +80,5 @@ export const POST: APIRoute = async ({ request }) => {
         },
       }
     );
-
   }
 };
