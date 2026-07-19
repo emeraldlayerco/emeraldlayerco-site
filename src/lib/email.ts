@@ -18,7 +18,19 @@ interface ProjectRequest {
   notes: string;
 }
 
-const resend = new Resend(import.meta.env.RESEND_API_KEY);
+// Debug to verify Cloudflare can see the secret
+const apiKey = import.meta.env.RESEND_API_KEY;
+
+console.log("=================================");
+console.log("RESEND_API_KEY exists:", !!apiKey);
+console.log("API Key length:", apiKey ? apiKey.length : 0);
+console.log("=================================");
+
+if (!apiKey) {
+  throw new Error("RESEND_API_KEY is missing!");
+}
+
+const resend = new Resend(apiKey);
 
 const COMPANY_EMAIL = "justin@emeraldlayer.com";
 
@@ -63,11 +75,15 @@ export async function sendProjectRequestEmail(data: ProjectRequest) {
   </div>
   `;
 
-  await resend.emails.send({
+  const result = await resend.emails.send({
     from: "Emerald Layer Company <quotes@emeraldlayer.com>",
     to: COMPANY_EMAIL,
     replyTo: data.email,
     subject: `New Project Request - ${data.projectId}`,
     html,
   });
+
+  console.log("Resend response:", result);
+
+  return result;
 }
