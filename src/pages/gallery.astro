@@ -1,10 +1,11 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 
-import planterWhite from '~/assets/images/gallery/planter-white.png';
-import planterPinkBlue from '~/assets/images/gallery/planter-pink-blue.png';
-import fourKoozies from '~/assets/images/gallery/four-koozies.png';
-import vwBus from '~/assets/images/gallery/vw-bus.png';
+import planterWhite from '~/assets/images/gallery/001-planter-white.png';
+import planterPinkBlue from '~/assets/images/gallery/002-planter-pink-blue.png';
+import fourKoozies from '~/assets/images/gallery/003-four-koozies.png';
+import vwBus from '~/assets/images/gallery/004-vw-bus.png';
+import eggVideo from '~/assets/images/gallery/005-Egg.mp4';
 
 const metadata = {
   title: 'Past Projects | Emerald Layer Company',
@@ -60,6 +61,16 @@ const metadata = {
         alt="VW Bus"
         class="w-full h-96 object-cover rounded-3xl shadow-xl"
       />
+      
+      <video
+  src={eggVideo}
+  autoplay
+  muted
+  loop
+  playsinline
+  controls
+  class="w-full h-96 object-cover rounded-3xl shadow-xl"
+></video>
 
     </div>
 
