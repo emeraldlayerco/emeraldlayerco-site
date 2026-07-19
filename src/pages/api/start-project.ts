@@ -1,11 +1,12 @@
 export const prerender = false;
 
 import type { APIRoute } from "astro";
+import { env } from "cloudflare:workers";
 
 import { generateProjectId } from "~/lib/projectId";
 import { sendProjectRequestEmail } from "~/lib/email";
 
-export const POST: APIRoute = async ({ request, locals }) => {
+export const POST: APIRoute = async ({ request }) => {
   try {
     const formData = await request.formData();
 
@@ -25,33 +26,19 @@ export const POST: APIRoute = async ({ request, locals }) => {
 
     const notes = String(formData.get("notes") ?? "");
 
-    // Cloudflare Worker runtime environment
-    const runtime = (locals as any).runtime;
-
-    if (!runtime?.env?.RESEND_API_KEY) {
-      throw new Error("RESEND_API_KEY missing from Cloudflare runtime.");
-    }
-
-    await sendProjectRequestEmail(
-      runtime.env.RESEND_API_KEY,
-      {
-        projectId,
-
-        name,
-        email,
-        phone,
-        business,
-
-        projectName,
-        description,
-
-        material,
-        quantity,
-        neededBy,
-
-        notes,
-      }
-    );
+    await sendProjectRequestEmail(env.RESEND_API_KEY, {
+      projectId,
+      name,
+      email,
+      phone,
+      business,
+      projectName,
+      description,
+      material,
+      quantity,
+      neededBy,
+      notes,
+    });
 
     return new Response(
       JSON.stringify({
